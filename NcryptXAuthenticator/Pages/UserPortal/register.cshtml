@@ -1,0 +1,20 @@
+﻿@page
+@using NcryptXAuthenticator.Classes;
+@model NcryptXAuthenticator.Pages.UserPortal.registerModel
+@{
+    StoreAdConnectionContext context = new StoreAdConnectionContext();
+    var user = context.UsersMFA.Where(o => o.UserPrincipalName == HttpContext.User.Identity.Name).FirstOrDefault();
+    
+    string username = user.UserPrincipalName;
+    string seed = user.seed;
+    otpGenerator otp = new otpGenerator();
+    otp.tokenGen(seed+user);
+    QrCodeGenerator qrCodeGenerator = new QrCodeGenerator();
+    string qr = qrCodeGenerator.qrGen(username, seed+username);
+}
+
+
+<h3>Scan the below QR Code to add your token</h3>
+<br />
+<br />
+<iframe src="@qr"  height="350" width="350"/>

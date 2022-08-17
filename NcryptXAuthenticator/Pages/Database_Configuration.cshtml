@@ -1,0 +1,16 @@
+﻿@page
+
+    @using NcryptXAuthenticator.Classes;
+@model NcryptXAuthenticator.Pages.Database_ConfigurationModel
+@{
+            otpGenerator otp = new otpGenerator();
+            Console.WriteLine("The token number is  " + otp.tokenGen("habeebshamsi123456")  ); 
+            otpValidator otpVal = new otpValidator();
+            Console.WriteLine("The validation for the token is " + otpVal.validate(41300,"habeebshamsi123456"));
+            QrCodeGenerator qrCodeGenerator = new QrCodeGenerator();
+            string qr = qrCodeGenerator.qrGen("test", "habeebshamsi123456"); 
+}
+<h3>Scan the below QR Code to add your token</h3>
+<br />
+<br />
+<iframe src="@qr"  height="350" width="350"/>

@@ -1,0 +1,55 @@
+﻿@page
+@model NcryptXAuthenticator.Pages.UserPortal.config.radiusclientModel
+@using NcryptXAuthenticator.Classes;
+
+
+<h5> Manage Radius Clients</h5>
+<br />
+<br />
+
+
+
+
+
+    @{
+       
+        StoreAdConnectionContext context = new StoreAdConnectionContext();
+        var f = context.RadiusClients;
+        foreach (var v in f)
+        {
+        <form method="post" id="httpform" class="form-horizontal" name="config">
+                <div class="container container-lg">
+                <div class="form-group">
+                    <label for="radid" class="font-monospace col-sm-2">Radius ID</label>
+                    <input type="text" id="radid" name="radid" readonly class="col-sm-10" value="@v.id" />
+                </div>
+                <br />
+                    <div class="form-group">
+                    <label   for="radname" class="font-monospace col-sm-2">Radius Client Name</label>
+                    <input type="text" id="radname" name="radname"  class="col-sm-10" value="@v.ClientName" />
+                    </div>
+                    <br />
+                    <div class="form-group">
+                    <label for="radport" class="font-monospace col-sm-2">Radius Port</label>
+                        <input type="text" id="radport" name="radport"   class="col-sm-10" value="@v.port" />
+                    </div>
+                    <br />
+                    <div class="form-group">
+                    <label   for="radsecret" class="font-monospace col-sm-2">Radius Secret</label>
+                        <input type="password"  id="radsecret" name="radsecret" value="@v.secret" class="col-sm-10"  />
+                    </div>
+                    <br />
+                </div>
+                <br />
+            <button type="submit" name="save" value="save" class="btn btn-success">Save</button>
+            <button type="submit" name="delete" value="delete" class="btn btn-danger">Delete</button>
+           
+        </form>
+        <br />
+        }
+
+    }
+
+
+
+

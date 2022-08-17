@@ -1,0 +1,111 @@
+﻿@page
+@using NcryptXAuthenticator.Classes;
+@using System.DirectoryServices.AccountManagement;
+@model NcryptXAuthenticator.Pages.UserPortal.config.smsConnectorModel
+@{
+    forme frm = new forme();
+    StoreAdConnectionContext context = new StoreAdConnectionContext();
+    var config = context.smsConfig.Find("test");
+ 
+}
+<h6>Generic HTTP SMS Gateway Connector</h6>
+<br />
+<br />
+<br />
+<button class="btn btn-dark btn-group-lg" onclick="howform()">Edit</button>
+
+<br />
+<br />
+
+<form method="post" id="httpform"  class="form-horizontal" name="config" >
+<div class="container container-lg">
+        <div class="form-group">
+            <label for="targeturl" asp-for="frm.targeturl"  class="font-monospace col-sm-2">URL</label>
+            <input type="text" id="smsformtarget" readonly name="targeturl" class="col-sm-10" value="@config.targeturl" />
+        </div>
+        <br />
+            <div class="form-group">
+            <label for="port" asp-for="frm.port" class="font-monospace col-sm-2">Port</label>
+            <input type="text" id="smsformport" readonly name="port" class="col-sm-10" value="@config.port" />
+
+</div>
+<br />
+<br />
+<br />
+
+        <div class="form-group">
+            <label for="headerkey" asp-for="frm.headerkey" class="font-monospace col-sm-2">Headers Seperted by a Comma</label>
+            <input type="text" readonly id="smsformheader" name="headerkey" value="@config.headerkey" class="col-sm-10" />
+        
+ </div>
+ <br />
+ <br />
+ <br />
+    </div>
+
+
+    <div class="form-group">
+        @{
+            if(config.bodytype.ToString()=="xml"){
+                <input readonly type="radio" name="rad" id="xmlbox" value="xml" checked>
+                <label class="font-monospace col-sm-2" asp-for="frm.bodytype">XML</label>
+            }else{
+                <input readonly type="radio" name="rad" id="xmlbox" value="xml">
+                <label class="font-monospace col-sm-2" asp-for="frm.bodytype">XML</label>
+            }
+
+            if (config.bodytype.ToString() == "json")
+            {
+                <input readonly type="radio" name="rad" id="JSONbox" value="json" checked>
+                <label class="font-monospace col-sm-2" asp-for="frm.bodytype">
+                    JSON
+                </label>
+            }
+            else
+            {
+                <input readonly type="radio" name="rad" id="JSONbox" value="json">
+                <label class="font-monospace col-sm-2" asp-for="frm.bodytype">
+                    JSON
+                </label>
+            }
+
+            if (config.bodytype.ToString() == "text")
+            {
+                <input readonly type="radio" name="rad" id="textbox" value="text" checked>
+                <label class="font-monospace col-sm-2" asp-for="frm.bodytype">Text</label>
+            }
+            else
+            {
+
+                <input readonly type="radio" name="rad" id="textbox" value="text">
+                <label class="font-monospace col-sm-2" asp-for="frm.bodytype">Text</label>
+
+            }
+
+
+        }
+        
+        
+       
+    </div >
+
+
+            <div class="form-group">
+            <label for="body" asp-for="frm.body" class="font-monospace col-sm-2">Http Body</label>
+            <input type="textbox" id="smsformbody" readonly name="body" class="col-sm-10" value="@config.body"></input>
+
+    </div>
+    <br />
+    <br />
+    <br />
+
+<button type="submit" name="save" value="save" class="btn btn-success">Save</button>
+<button type="submit" name="test" value="test" class="btn btn-primary">Test</button>
+<button type="submit" name="delete" value="delete" class="btn btn-danger">Delete</button>
+
+    </div>
+</form>
+
+<br />
+<br />
+<br />

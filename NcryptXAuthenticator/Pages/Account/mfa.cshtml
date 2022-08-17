@@ -1,0 +1,43 @@
+﻿@page
+@model NcryptXAuthenticator.Pages.Account.mfaModel
+@{
+    <div class="container border" style="padding:20px">
+                          <form method="post">
+                            <div class="text-danger" asp-validation-summary="All"></div>
+                            <div class="form-group row">
+                            <div class="col-2">
+                            <label asp-for="mycredential.UserName"></label>
+                            </div>
+                            <div class="col-5">
+                            <input type="text" asp-for="mycredential.UserName" class="form-control" />
+                            </div>
+                            <span class="text-danger" asp-validation-for="mycredential.UserName"></span>
+                            </div>
+                            <div class="form-group row">
+                            <div class="col-2">
+                            <label asp-for="mycredential.Password"></label>
+                            </div>
+                            <div class="col-5">
+                            <input type="password" asp-for="mycredential.Password" class="form-control" />
+                            </div>
+                            <span class="text-danger" asp-validation-for="mycredential.Password"></span>
+                            </div>
+                            <div class="form-group row">
+                                    <div class="col-2">
+                                        <label asp-for="mycredential.Token"></label>
+                                    </div>
+                                    <div class="col-5">
+                                        <input type="text" asp-for="mycredential.Token" class="form-control" />
+                                    </div>
+                                    <span class="text-danger" asp-validation-for="mycredential.Token"></span>
+                                </div>
+                            <div class="form-group row">
+                                     <div class="col-2">
+                                     <input type="submit" class="btn btn-primary" value="Login">
+                                     </div>
+                                     
+                            </div>
+                            
+                        </form>
+    </div>
+                     }

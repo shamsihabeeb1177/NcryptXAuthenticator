@@ -1,0 +1,34 @@
+﻿@page
+@model             admincshtmlModel
+@using NcryptXAuthenticator.Classes;
+@using  System.DirectoryServices.AccountManagement;
+@using System.Text;
+@{
+            StoreAdConnectionContext context = new StoreAdConnectionContext();
+            getAdConnectionSettings adset = new getAdConnectionSettings(context);
+            var constring = adset.getConnectionDetails("test");
+            var server = constring.Server;
+            var port = constring.Port;
+            var bind = constring.DC;
+            var binduser = constring.Username;
+            var bindpas = constring.Password;
+}
+@{
+    var msg = ViewData["Message"];
+}
+
+
+
+
+
+
+
+
+
+   
+        
+
+
+           
+
+

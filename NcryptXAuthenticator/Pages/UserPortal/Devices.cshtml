@@ -1,0 +1,24 @@
+﻿@page
+@model NcryptXAuthenticator.Pages.UserPortal.DevicesModel
+@using JustAnotherAPI.data
+@using JustAnotherAPI.Models
+@{
+    userDbContext dbcon = new userDbContext();
+    List<users> tes = dbcon.Users.Where(op => op.username == HttpContext.User.Identity.Name).ToList();
+
+    foreach(var u in tes){
+        <div class="card" style="width: 18rem;">
+            <img src="..." class="card-img-top md-6" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">@u.deviceid</h5>
+                <p class="card-text">@u.deviceid</p>
+                <p class="card-text">@u.status</p>
+                <p class="card-text">@u.enddate</p>
+                <a href="#" class="btn btn-primary">Enable</a>
+            </div>
+        </div>
+    }
+  
+}
+
+

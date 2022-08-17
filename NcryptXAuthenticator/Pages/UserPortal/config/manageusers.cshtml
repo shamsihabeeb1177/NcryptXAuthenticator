@@ -1,0 +1,54 @@
+﻿@page
+@model NcryptXAuthenticator.Pages.UserPortal.config.manageusersModel
+@using NcryptXAuthenticator.Classes;
+@{
+}
+
+
+
+<h5> Manage Database Users</h5>
+<br />
+<br />
+
+<form method="post">
+    <table class="table table-bordered table-dark">
+
+        <th>User Principal Name</th>
+        <th>sAMAccountName</th>
+        <th>Email Address</th>
+        <th>Status</th>
+        @{
+            StoreAdConnectionContext con = new StoreAdConnectionContext();
+            List<UserModel> users = new List<UserModel>();
+            users = con.UsersMFA.ToList();
+
+            foreach (var user in users)
+            {
+
+                    <tr>
+                        <td>
+                            <input class="form-check-input" type="checkbox" name="dbuser" value="@user.UserPrincipalName" id="@user.UserPrincipalName">
+                            <label class="form-check-label" for="@user.UserPrincipalName">
+                                @user.UserPrincipalName
+                            </label>
+                        </td>
+                        <td>@user.SamAccountName</td>
+                        <td>@user.EmailAddress</td>
+                        @{if(user.Enabled==true){
+                            <td>Active</td>
+                        }else{
+                            <td>Disabled</td>
+                        }
+}
+                    </tr>
+            }
+        }
+
+    </table>
+
+    <br />
+    <br />
+    <button type="submit" class="btn btn-danger" name="deletedbuser" value="deletedbuser">Delete</button>
+    <button type="submit" class="btn btn-danger" name="disableuser" value="disableuser">Disable</button>
+    <button type="submit" class="btn btn-success" name="enableuser" value="enableuser">Enable</button>
+</form>

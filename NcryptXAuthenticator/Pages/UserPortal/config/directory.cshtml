@@ -1,0 +1,64 @@
+﻿@page
+@model NcryptXAuthenticator.Pages.UserPortal.config.directoryModel
+@using NcryptXAuthenticator.Classes;
+@using System.DirectoryServices.AccountManagement;
+@using System.Text;
+@{
+    
+    var msg = ViewData["Message"];
+
+    StoreAdConnectionContext context = new StoreAdConnectionContext();
+    getAdConnectionSettings adset = new getAdConnectionSettings(context);
+    var constring = adset.getConnectionDetails("test");
+    var server = constring.Server;
+    var port = constring.Port;
+    var bind = constring.DC;
+    var binduser = constring.Username;
+    var bindpas = constring.Password;
+
+}
+
+
+        <h4>Active Directory Connector</h4>
+        <br />
+
+
+
+        <button name=" edit" class="btn btn-secondary" onclick="unhide()">Edit Configuration</button>
+        <br />
+        <br />
+        <form method="post" asp-controller="admin" asp-action="userportal/admin#directory">
+            <div class="form-group">
+                <label for="server" asp-for="form.server">Server </label>
+                <input type="text" asp-for="form.server" class="form-control" id="server" readonly value="@server" />
+            </div>
+            <div class="form-group ">
+                <label for="port" asp-for="form.server">Port </label>
+                <input type="text" asp-for="form.port" class="form-control" id="port" readonly value="@port" />
+            </div>
+            <div class="form-group">
+                <label for="bind" asp-for="form.server">Bind </label>
+                <input type="text" asp-for="form.bind" class="form-control" id="bind" readonly value="@bind" />
+            </div>
+            <div class="form-group ">
+                <label for="binduser" asp-for="form.server">Bind User </label>
+                <input type="text" asp-for="form.binduser" class="form-control" id="binduser" readonly value="@binduser" />
+            </div>
+            <div class="form-group ">
+                <label for="bindpass" asp-for="form.server">Bind Password </label>
+                <input type="password" asp-for="form.bindpass" class="form-control" id="bindpass" readonly value="@bindpas" />
+                <br />
+            </div>
+            <br />
+            <button type="submit" id="save" name="save" value="save" aria-label="save" class=" btn btn-primary">Save</button>
+            <button type="submit" id="delete" name="delete" value="delete" aria-label="delete" class="btn btn-danger">Delete</button>
+            <button type="submit" id="test" name="test" value="test" aria-label="test" class="btn btn-primary">Test Connection</button>
+            <br />
+            <br />
+
+            @if (msg != null)
+            {
+                <span id="box" class="alert alert-success" action="setTimeout()">@msg</span>
+            }
+        </form>
+    
