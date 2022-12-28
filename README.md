@@ -35,8 +35,10 @@ Further Enhancements:
 
 Considering the success of the above, I have considered developing this as a complete MFA and SSO solution with the below concept.
 
-NcryptX Authentication server can be used as an MFA solution regardless of its outlook and mobile client capabilities. Integrations to this server could be done VIA API or Radius server (The skeleton code for radius server is ready and is built using nodejs. the radius server is tested using the ntradping utility and has worked successfully) alternatively it could also be integrated VIA API (This is still in the development phase) where other solutions would call the authenticate API of NcryptX and provide username and password in json, or xml format, the server would provide a result output if the authentication is successful which can be used by the target systems to authenticate the users) Methods of authentication: Google Authenticator - Developed and tested Microsoft Authenticator - Developed and tested SMS - Developed and tested. Push - In development FIDO tokens and other hardware tokens - In development. AD connector is developed, and the user database is synced from the AD or local DB can be used
+NcryptX Authentication server can be used as an MFA solution regardless of its outlook and mobile client capabilities. Integrations to this server could be done VIA API or Radius server (The skeleton code for radius server is ready and is built using nodejs. the radius server is tested using the ntradping utility and has worked successfully) alternatively it could also be integrated VIA API  where other solutions would call the authenticate API of NcryptX and provide username and password in json, or xml format, the server would provide a result output if the authentication is successful which can be used by the target systems to authenticate the users). Additionally a saml IDP server module is now added thru which other applications can be integrated to leverage the SSO and MFA functionalities. Methods of authentication: Google Authenticator - Developed and tested. Microsoft Authenticator - Developed and tested. SMS - Developed and tested. Push - In development. FIDO tokens and other hardware tokens - In development. AD connector is developed, and the user database is synced from the AD or local DB can be used.
+
 SAML IDP for OIDC and SAML Authentication and authorization - This is now developed and under testing.
+
 Flow:
 
 Target system offloads its authentication to NcryptX
@@ -64,3 +66,7 @@ NcryptX API Module - almost completed api security to be added.
 NcryptX Auth server : TOTP - done and tested HOTP - to be developed EOTP - In progress Radius - tested but needs enhancement and some workflow alterations. API - In process. Admin GUI - Inprogress / Half Done AD Connector - Done and tested.
 
 NcryptX IDP server for sso : Developed, Testing in progress.
+
+NcryptX PAM Module - to provide rdp and ssh proiviliged access - This is under development
+
+NcryptX IAM Module - to manage identity lifecycle - this is under progress.
