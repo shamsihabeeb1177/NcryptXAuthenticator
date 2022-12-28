@@ -31,10 +31,10 @@ This code is an MVP which has no refactoring and has a lot of static entries, it
 
 Further Enhancements:
 
-Considering the success of the above, I have considered developing this as a complete MFA solution with the below concept.
+Considering the success of the above, I have considered developing this as a complete MFA and SSO solution with the below concept.
 
 NcryptX Authentication server can be used as an MFA solution regardless of its outlook and mobile client capabilities. Integrations to this server could be done VIA API or Radius server (The skeleton code for radius server is ready and is built using nodejs. the radius server is tested using the ntradping utility and has worked successfully) alternatively it could also be integrated VIA API (This is still in the development phase) where other solutions would call the authenticate API of NcryptX and provide username and password in json, or xml format, the server would provide a result output if the authentication is successful which can be used by the target systems to authenticate the users) Methods of authentication: Google Authenticator - Developed and tested Microsoft Authenticator - Developed and tested SMS - Developed and tested. Push - In development FIDO tokens and other hardware tokens - In development. AD connector is developed, and the user database is synced from the AD or local DB can be used
-SAML IDP for OIDC and SAML Authentication and authorization -p This is now developed and under testing.
+SAML IDP for OIDC and SAML Authentication and authorization - This is now developed and under testing.
 Flow:
 
 Target system offloads its authentication to NcryptX
